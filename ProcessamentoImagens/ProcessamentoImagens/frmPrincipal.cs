@@ -164,6 +164,17 @@ namespace ProcessamentoImagens
             pictBoxImg2.Image = imgDest;
         }
 
+        private void btnInvertRedBlueWithDMA_Click(object sender, EventArgs e)
+        {
+            if (!pictBoxImg2.Visible)
+                changePictureBoxesVisibility();
+
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.invert_red_blue_dma(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
         private void btnBlackWhiteWithoutDMA_Click(object sender, EventArgs e)
         {
             if (!pictBoxImg2.Visible)

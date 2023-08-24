@@ -396,6 +396,53 @@ namespace ProcessamentoImagens
             imgDestB.UnlockBits(bitmapDataDestB);
         }
 
+        public static void invert_red_blue_dma(Bitmap imgSrc, Bitmap imgDest)
+        {
+            int width = imgSrc.Width;
+            int height = imgSrc.Height;
+            int pixelSize = 3;
+            int r, g, b;
+
+            //lock dados bitmap origem
+            BitmapData bitmapDataSrc = imgSrc.LockBits(new Rectangle(0, 0, width, height),
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+            //lock dados bitmap destino
+            BitmapData bitmapDataDest = imgDest.LockBits(new Rectangle(0, 0, width, height),
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+
+            int padding = bitmapDataSrc.Stride - (width * pixelSize);
+
+            unsafe
+            {
+                byte* src = (byte*)bitmapDataSrc.Scan0.ToPointer();
+                byte* dest = (byte*)bitmapDataDest.Scan0.ToPointer();
+
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        
+                        b = *(src++);
+                        g = *(src++);
+                        r = *(src++);
+
+                        *(dest++) = (byte)r;
+                        *(dest++) = (byte)g;
+                        *(dest++) = (byte)b;
+
+                    }
+
+                    src += padding;
+                    dest += padding;
+                }
+            }
+            //unlock imagem origem 
+            imgSrc.UnlockBits(bitmapDataSrc);
+            //unlock imagem destino
+            imgDest.UnlockBits(bitmapDataDest);
+
+        }
+
         public static void black_white_dma(Bitmap imgSrc, Bitmap imgDest)
         {
             int width = imgSrc.Width;

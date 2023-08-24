@@ -142,7 +142,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(396, 512);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(138, 23);
             this.button1.TabIndex = 112;
@@ -153,7 +153,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(538, 512);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(150, 23);
             this.button2.TabIndex = 113;
@@ -200,7 +200,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(866, 512);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(170, 23);
             this.button3.TabIndex = 118;
@@ -223,7 +223,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(112, 578);
+            this.button5.Location = new System.Drawing.Point(5, 571);
             this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(170, 23);
@@ -272,13 +272,14 @@
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(170, 23);
             this.button9.TabIndex = 124;
-            this.button9.Text = "Invert Red N Blue w/o DMA";
+            this.button9.Text = "Invert Red N Blue w/ DMA";
             this.button9.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.btnInvertRedBlueWithDMA_Click);
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(112, 605);
+            this.button10.Location = new System.Drawing.Point(5, 598);
             this.button10.Margin = new System.Windows.Forms.Padding(2);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(170, 23);
