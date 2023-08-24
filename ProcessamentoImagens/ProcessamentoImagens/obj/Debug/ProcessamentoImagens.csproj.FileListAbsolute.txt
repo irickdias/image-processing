@@ -17,3 +17,13 @@ C:\Users\Henrique Dias\Downloads\ProcessamentoImagens\ProcessamentoImagens\obj\D
 C:\Users\Henrique Dias\Downloads\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.csproj.CoreCompileInputs.cache
 C:\Users\Henrique Dias\Downloads\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.exe
 C:\Users\Henrique Dias\Downloads\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.pdb
+D:\Documentos\COLLEGE 2023.2\Processamento de Imagens\image-processing\ProcessamentoImagens\ProcessamentoImagens\bin\Debug\ProcessamentoImagens.exe.config
+D:\Documentos\COLLEGE 2023.2\Processamento de Imagens\image-processing\ProcessamentoImagens\ProcessamentoImagens\bin\Debug\ProcessamentoImagens.exe
+D:\Documentos\COLLEGE 2023.2\Processamento de Imagens\image-processing\ProcessamentoImagens\ProcessamentoImagens\bin\Debug\ProcessamentoImagens.pdb
+D:\Documentos\COLLEGE 2023.2\Processamento de Imagens\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.csproj.AssemblyReference.cache
+D:\Documentos\COLLEGE 2023.2\Processamento de Imagens\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.frmPrincipal.resources
+D:\Documentos\COLLEGE 2023.2\Processamento de Imagens\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.Properties.Resources.resources
+D:\Documentos\COLLEGE 2023.2\Processamento de Imagens\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.csproj.GenerateResource.cache
+D:\Documentos\COLLEGE 2023.2\Processamento de Imagens\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.csproj.CoreCompileInputs.cache
+D:\Documentos\COLLEGE 2023.2\Processamento de Imagens\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.exe
+D:\Documentos\COLLEGE 2023.2\Processamento de Imagens\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.pdb

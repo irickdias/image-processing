@@ -39,6 +39,10 @@ namespace ProcessamentoImagens
         {
             pictBoxImg1.Image = null;
             pictBoxImg2.Image = null;
+            pictureBoxNormal.Image = null;
+            pictureBoxRed.Image = null;
+            pictureBoxGreen.Image = null;
+            pictureBoxBlue.Image = null;
         }
 
         private void btnLuminanciaSemDMA_Click(object sender, EventArgs e)
@@ -128,6 +132,27 @@ namespace ProcessamentoImagens
             pictureBoxBlue.Image = imgDestB;
         }
 
+        private void btnSeparateChannelsWithDMA_Click(Object sender, EventArgs e)
+        {
+            //Bitmap imgDestN = new Bitmap(image);
+            Bitmap imgDestR = new Bitmap(image);
+            Bitmap imgDestG = new Bitmap(image);
+            Bitmap imgDestB = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.separate_channels_dma(imageBitmap, imgDestR, imgDestG, imgDestB);
+
+            pictBoxImg2.Visible = false;
+            pictureBoxNormal.Visible = true;
+            pictureBoxRed.Visible = true;
+            pictureBoxGreen.Visible = true;
+            pictureBoxBlue.Visible = true;
+
+            pictureBoxNormal.Image = imageBitmap;
+            pictureBoxRed.Image = imgDestR;
+            pictureBoxGreen.Image = imgDestG;
+            pictureBoxBlue.Image = imgDestB;
+        }
+
         private void btnInvertRedBlueWithoutDMA_Click(object sender, EventArgs e)
         {
             if (!pictBoxImg2.Visible)
@@ -147,6 +172,17 @@ namespace ProcessamentoImagens
             Bitmap imgDest = new Bitmap(image);
             imageBitmap = (Bitmap)image;
             Filtros.black_white(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnBlackWhiteWithDMA_Click(object sender, EventArgs e)
+        {
+            if (!pictBoxImg2.Visible)
+                changePictureBoxesVisibility();
+
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.black_white_dma(imageBitmap, imgDest);
             pictBoxImg2.Image = imgDest;
         }
 
