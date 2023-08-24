@@ -4,6 +4,7 @@ using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace ProcessamentoImagens
 {
@@ -197,6 +198,41 @@ namespace ProcessamentoImagens
             flip_vertical(aux, dest);
         }
 
+        public static void divide_center(Bitmap src, Bitmap dest)
+        {
+            int width = src.Width;
+            int height = src.Height;
+
+            int half_x = width / 2;
+            int half_y = height / 2;
+
+            Bitmap topleft = new Bitmap(half_x, half_y);
+            Bitmap topright = new Bitmap(half_x, half_y);
+            Bitmap bottomleft = new Bitmap(half_x, half_y);
+            Bitmap bottomright = new Bitmap(half_x, half_y);
+
+            for(int y = 0; y < half_y; y++)
+            {
+                for(int x = 0; x < half_x; x++)
+                {
+                    //obtendo a cor do pixel
+                    Color cor1 = src.GetPixel(x, y);
+                    Color cor2 = src.GetPixel(x + half_x, y);
+                    Color cor3 = src.GetPixel(x, y + half_y);
+                    Color cor4 = src.GetPixel(x + half_x, y + half_y);
+
+
+
+
+                    dest.SetPixel(x, y, cor4);
+                    dest.SetPixel(x + half_x , y, cor3);
+                    dest.SetPixel(x, y + half_y, cor2);
+                    dest.SetPixel(x + half_x, y + half_y, cor1);
+                }
+            }
+
+        }
+
         //com acesso direto a memória
         public static void convert_to_grayDMA(Bitmap imageBitmapSrc, Bitmap imageBitmapDest)
         {
@@ -307,16 +343,40 @@ namespace ProcessamentoImagens
             unsafe
             {
                 byte* src = (byte*)bitmapDataSrc.Scan0.ToPointer();
+                //byte* srcFinal = src + (width * height);
+                byte* srcFinal;
                 byte* dest = (byte*)bitmapDataDest.Scan0.ToPointer();
-                int r, g, b;
+                byte* destFinal;
+                int r, g, b, r2, g2, b2;
 
                 for (int y = 0; y < height; y++)
                 {
-                    for (int x = 0; x < half; x++)
+                    srcFinal = destFinal = src + width*3 -1;
+                    for (int x = 0; x < width; x++)
                     {
                         b = *(src++);
                         g = *(src++);
                         r = *(src++);
+
+                        r2 = *(srcFinal--);
+                        g2 = *(srcFinal--);
+                        b2 = *(srcFinal--);
+
+                        *(dest++) = (byte)b2;
+                        *(dest++) = (byte)g2;
+                        *(dest++) = (byte)r2;
+
+                        byte* aux = dest;
+                        dest = destFinal;
+
+                        *(dest--) = (byte)r; destFinal--;
+                        *(dest--) = (byte)g; destFinal--;
+                        *(dest--) = (byte)b; destFinal--;
+
+                        dest = aux;
+
+
+
 
 
                         //Color inverse = src.GetPixel(width - 1 - x, y);
@@ -324,10 +384,88 @@ namespace ProcessamentoImagens
                         //dest.SetPixel(x, y, inverse);
                         //dest.SetPixel(width - 1 - x, y, color);
                     }
+                    src += padding;
+                    dest += padding;
                 }
             }
+            //unlock imagem origem 
+            imgSrc.UnlockBits(bitmapDataSrc);
+            //unlock imagem destino
+            imgDest.UnlockBits(bitmapDataDest);
 
-            
+        }
+
+        public static void flip_vertical_dma(Bitmap imgSrc, Bitmap imgDest)
+        {
+            int width = imgSrc.Width;
+            int height = imgSrc.Height;
+            int pixelSize = 3;
+            //int r, g, b;
+
+            int half = width / 2;
+
+            //lock dados bitmap origem
+            BitmapData bitmapDataSrc = imgSrc.LockBits(new Rectangle(0, 0, width, height),
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+            //lock dados bitmap destino
+            BitmapData bitmapDataDest = imgDest.LockBits(new Rectangle(0, 0, width, height),
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+
+            int padding = bitmapDataSrc.Stride - (width * pixelSize);
+
+            unsafe
+            {
+                byte* src = (byte*)bitmapDataSrc.Scan0.ToPointer();
+                //byte* srcFinal = src + (width * height);
+                byte* srcFinal;
+                byte* dest = (byte*)bitmapDataDest.Scan0.ToPointer();
+                byte* destFinal;
+                int r, g, b, r2, g2, b2;
+
+                for (int y = 0; y < height; y++)
+                {
+                    srcFinal = destFinal = src + width * 3 - 1;
+                    for (int x = 0; x < width; x++)
+                    {
+                        b = *(src++);
+                        g = *(src++);
+                        r = *(src++);
+
+                        r2 = *(srcFinal--);
+                        g2 = *(srcFinal--);
+                        b2 = *(srcFinal--);
+
+                        *(dest++) = (byte)b2;
+                        *(dest++) = (byte)g2;
+                        *(dest++) = (byte)r2;
+
+                        byte* aux = dest;
+                        dest = destFinal;
+
+                        *(dest--) = (byte)r; destFinal--;
+                        *(dest--) = (byte)g; destFinal--;
+                        *(dest--) = (byte)b; destFinal--;
+
+                        dest = aux;
+
+
+
+
+
+                        //Color inverse = src.GetPixel(width - 1 - x, y);
+
+                        //dest.SetPixel(x, y, inverse);
+                        //dest.SetPixel(width - 1 - x, y, color);
+                    }
+                    src += padding;
+                    dest += padding;
+                }
+            }
+            //unlock imagem origem 
+            imgSrc.UnlockBits(bitmapDataSrc);
+            //unlock imagem destino
+            imgDest.UnlockBits(bitmapDataDest);
+
         }
 
         public static void separate_channels_dma(Bitmap imgSrc, Bitmap imgDestR, Bitmap imgDestG, Bitmap imgDestB)

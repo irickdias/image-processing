@@ -53,6 +53,8 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxImg1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxImg2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRed)).BeginInit();
@@ -64,26 +66,29 @@
             // pictBoxImg1
             // 
             this.pictBoxImg1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictBoxImg1.Location = new System.Drawing.Point(5, 6);
+            this.pictBoxImg1.Location = new System.Drawing.Point(7, 7);
+            this.pictBoxImg1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictBoxImg1.Name = "pictBoxImg1";
-            this.pictBoxImg1.Size = new System.Drawing.Size(600, 500);
+            this.pictBoxImg1.Size = new System.Drawing.Size(800, 615);
             this.pictBoxImg1.TabIndex = 102;
             this.pictBoxImg1.TabStop = false;
             // 
             // pictBoxImg2
             // 
             this.pictBoxImg2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictBoxImg2.Location = new System.Drawing.Point(610, 6);
+            this.pictBoxImg2.Location = new System.Drawing.Point(813, 7);
+            this.pictBoxImg2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictBoxImg2.Name = "pictBoxImg2";
-            this.pictBoxImg2.Size = new System.Drawing.Size(600, 500);
+            this.pictBoxImg2.Size = new System.Drawing.Size(800, 615);
             this.pictBoxImg2.TabIndex = 105;
             this.pictBoxImg2.TabStop = false;
             // 
             // btnAbrirImagem
             // 
-            this.btnAbrirImagem.Location = new System.Drawing.Point(5, 512);
+            this.btnAbrirImagem.Location = new System.Drawing.Point(7, 630);
+            this.btnAbrirImagem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAbrirImagem.Name = "btnAbrirImagem";
-            this.btnAbrirImagem.Size = new System.Drawing.Size(101, 23);
+            this.btnAbrirImagem.Size = new System.Drawing.Size(135, 28);
             this.btnAbrirImagem.TabIndex = 106;
             this.btnAbrirImagem.Text = "Abrir Imagem";
             this.btnAbrirImagem.UseVisualStyleBackColor = true;
@@ -91,9 +96,10 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(5, 541);
+            this.btnLimpar.Location = new System.Drawing.Point(7, 666);
+            this.btnLimpar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(101, 23);
+            this.btnLimpar.Size = new System.Drawing.Size(135, 28);
             this.btnLimpar.TabIndex = 107;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
@@ -101,9 +107,10 @@
             // 
             // btnLuminanciaSemDMA
             // 
-            this.btnLuminanciaSemDMA.Location = new System.Drawing.Point(112, 512);
+            this.btnLuminanciaSemDMA.Location = new System.Drawing.Point(149, 630);
+            this.btnLuminanciaSemDMA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLuminanciaSemDMA.Name = "btnLuminanciaSemDMA";
-            this.btnLuminanciaSemDMA.Size = new System.Drawing.Size(143, 23);
+            this.btnLuminanciaSemDMA.Size = new System.Drawing.Size(191, 28);
             this.btnLuminanciaSemDMA.TabIndex = 108;
             this.btnLuminanciaSemDMA.Text = "Luminância sem DMA";
             this.btnLuminanciaSemDMA.UseVisualStyleBackColor = true;
@@ -111,9 +118,10 @@
             // 
             // btnLuminanciaComDMA
             // 
-            this.btnLuminanciaComDMA.Location = new System.Drawing.Point(112, 541);
+            this.btnLuminanciaComDMA.Location = new System.Drawing.Point(149, 666);
+            this.btnLuminanciaComDMA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLuminanciaComDMA.Name = "btnLuminanciaComDMA";
-            this.btnLuminanciaComDMA.Size = new System.Drawing.Size(143, 23);
+            this.btnLuminanciaComDMA.Size = new System.Drawing.Size(191, 28);
             this.btnLuminanciaComDMA.TabIndex = 109;
             this.btnLuminanciaComDMA.Text = "Luminância com DMA";
             this.btnLuminanciaComDMA.UseVisualStyleBackColor = true;
@@ -121,9 +129,10 @@
             // 
             // btnNegativoComDMA
             // 
-            this.btnNegativoComDMA.Location = new System.Drawing.Point(261, 541);
+            this.btnNegativoComDMA.Location = new System.Drawing.Point(348, 666);
+            this.btnNegativoComDMA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNegativoComDMA.Name = "btnNegativoComDMA";
-            this.btnNegativoComDMA.Size = new System.Drawing.Size(130, 23);
+            this.btnNegativoComDMA.Size = new System.Drawing.Size(173, 28);
             this.btnNegativoComDMA.TabIndex = 111;
             this.btnNegativoComDMA.Text = "Negativo com DMA";
             this.btnNegativoComDMA.UseVisualStyleBackColor = true;
@@ -131,9 +140,10 @@
             // 
             // btnNegativoSemDMA
             // 
-            this.btnNegativoSemDMA.Location = new System.Drawing.Point(261, 512);
+            this.btnNegativoSemDMA.Location = new System.Drawing.Point(348, 630);
+            this.btnNegativoSemDMA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNegativoSemDMA.Name = "btnNegativoSemDMA";
-            this.btnNegativoSemDMA.Size = new System.Drawing.Size(130, 23);
+            this.btnNegativoSemDMA.Size = new System.Drawing.Size(173, 28);
             this.btnNegativoSemDMA.TabIndex = 110;
             this.btnNegativoSemDMA.Text = "Negativo sem DMA";
             this.btnNegativoSemDMA.UseVisualStyleBackColor = true;
@@ -141,10 +151,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(396, 512);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(528, 630);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(138, 23);
+            this.button1.Size = new System.Drawing.Size(184, 28);
             this.button1.TabIndex = 112;
             this.button1.Text = "Flip Horizontal w/o DMA";
             this.button1.UseVisualStyleBackColor = true;
@@ -152,10 +162,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(538, 512);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Location = new System.Drawing.Point(717, 630);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(150, 23);
+            this.button2.Size = new System.Drawing.Size(200, 28);
             this.button2.TabIndex = 113;
             this.button2.Text = "Flip Vertical w/o DMA";
             this.button2.UseVisualStyleBackColor = true;
@@ -164,45 +174,49 @@
             // pictureBoxRed
             // 
             this.pictureBoxRed.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBoxRed.Location = new System.Drawing.Point(611, 267);
+            this.pictureBoxRed.Location = new System.Drawing.Point(815, 329);
+            this.pictureBoxRed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxRed.Name = "pictureBoxRed";
-            this.pictureBoxRed.Size = new System.Drawing.Size(302, 238);
+            this.pictureBoxRed.Size = new System.Drawing.Size(403, 293);
             this.pictureBoxRed.TabIndex = 114;
             this.pictureBoxRed.TabStop = false;
             // 
             // pictureBoxNormal
             // 
             this.pictureBoxNormal.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBoxNormal.Location = new System.Drawing.Point(610, 6);
+            this.pictureBoxNormal.Location = new System.Drawing.Point(813, 7);
+            this.pictureBoxNormal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxNormal.Name = "pictureBoxNormal";
-            this.pictureBoxNormal.Size = new System.Drawing.Size(303, 255);
+            this.pictureBoxNormal.Size = new System.Drawing.Size(404, 314);
             this.pictureBoxNormal.TabIndex = 115;
             this.pictureBoxNormal.TabStop = false;
             // 
             // pictureBoxGreen
             // 
             this.pictureBoxGreen.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBoxGreen.Location = new System.Drawing.Point(920, 267);
+            this.pictureBoxGreen.Location = new System.Drawing.Point(1227, 329);
+            this.pictureBoxGreen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxGreen.Name = "pictureBoxGreen";
-            this.pictureBoxGreen.Size = new System.Drawing.Size(291, 238);
+            this.pictureBoxGreen.Size = new System.Drawing.Size(388, 293);
             this.pictureBoxGreen.TabIndex = 116;
             this.pictureBoxGreen.TabStop = false;
             // 
             // pictureBoxBlue
             // 
             this.pictureBoxBlue.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBoxBlue.Location = new System.Drawing.Point(920, 6);
+            this.pictureBoxBlue.Location = new System.Drawing.Point(1227, 7);
+            this.pictureBoxBlue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxBlue.Name = "pictureBoxBlue";
-            this.pictureBoxBlue.Size = new System.Drawing.Size(291, 255);
+            this.pictureBoxBlue.Size = new System.Drawing.Size(388, 314);
             this.pictureBoxBlue.TabIndex = 117;
             this.pictureBoxBlue.TabStop = false;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(866, 512);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Location = new System.Drawing.Point(1155, 630);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(170, 23);
+            this.button3.Size = new System.Drawing.Size(227, 28);
             this.button3.TabIndex = 118;
             this.button3.Text = "Separate RGB Chn w/o DMA";
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -211,10 +225,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(1040, 512);
-            this.button4.Margin = new System.Windows.Forms.Padding(2);
+            this.button4.Location = new System.Drawing.Point(1387, 630);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(170, 23);
+            this.button4.Size = new System.Drawing.Size(227, 28);
             this.button4.TabIndex = 119;
             this.button4.Text = "Invert Red N Blue w/o DMA";
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -223,10 +237,10 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(5, 571);
-            this.button5.Margin = new System.Windows.Forms.Padding(2);
+            this.button5.Location = new System.Drawing.Point(7, 703);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(170, 23);
+            this.button5.Size = new System.Drawing.Size(227, 28);
             this.button5.TabIndex = 120;
             this.button5.Text = "B And W w/o DMA";
             this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -235,30 +249,31 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(396, 539);
-            this.button6.Margin = new System.Windows.Forms.Padding(2);
+            this.button6.Location = new System.Drawing.Point(528, 663);
+            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(138, 23);
+            this.button6.Size = new System.Drawing.Size(184, 28);
             this.button6.TabIndex = 121;
             this.button6.Text = "Flip Horizontal w/ DMA";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.btnFlipHorizontalWithDMA_Click);
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(538, 539);
-            this.button7.Margin = new System.Windows.Forms.Padding(2);
+            this.button7.Location = new System.Drawing.Point(717, 663);
+            this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(150, 23);
+            this.button7.Size = new System.Drawing.Size(200, 28);
             this.button7.TabIndex = 122;
             this.button7.Text = "Flip Vertical w/ DMA";
             this.button7.UseVisualStyleBackColor = true;
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(866, 539);
-            this.button8.Margin = new System.Windows.Forms.Padding(2);
+            this.button8.Location = new System.Drawing.Point(1155, 663);
+            this.button8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(170, 23);
+            this.button8.Size = new System.Drawing.Size(227, 28);
             this.button8.TabIndex = 123;
             this.button8.Text = "Separate RGB Chn w/ DMA";
             this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -267,10 +282,10 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(1040, 539);
-            this.button9.Margin = new System.Windows.Forms.Padding(2);
+            this.button9.Location = new System.Drawing.Point(1387, 663);
+            this.button9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(170, 23);
+            this.button9.Size = new System.Drawing.Size(227, 28);
             this.button9.TabIndex = 124;
             this.button9.Text = "Invert Red N Blue w/ DMA";
             this.button9.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -279,10 +294,10 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(5, 598);
-            this.button10.Margin = new System.Windows.Forms.Padding(2);
+            this.button10.Location = new System.Drawing.Point(7, 736);
+            this.button10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(170, 23);
+            this.button10.Size = new System.Drawing.Size(227, 28);
             this.button10.TabIndex = 125;
             this.button10.Text = "B And W w/ DMA";
             this.button10.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -291,30 +306,55 @@
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(692, 539);
-            this.button11.Margin = new System.Windows.Forms.Padding(2);
+            this.button11.Location = new System.Drawing.Point(923, 663);
+            this.button11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(170, 23);
+            this.button11.Size = new System.Drawing.Size(227, 28);
             this.button11.TabIndex = 127;
             this.button11.Text = "Flip Main Diagonal w/ DMA";
             this.button11.UseVisualStyleBackColor = true;
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(692, 512);
-            this.button12.Margin = new System.Windows.Forms.Padding(2);
+            this.button12.Location = new System.Drawing.Point(923, 630);
+            this.button12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(170, 23);
+            this.button12.Size = new System.Drawing.Size(227, 28);
             this.button12.TabIndex = 126;
             this.button12.Text = "Flip Main Diagonal w/o DMA";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.btnFlipDiagonalWithoutDMA_Click);
             // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(240, 703);
+            this.button13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(227, 28);
+            this.button13.TabIndex = 128;
+            this.button13.Text = "Divide By Center w/o DMA";
+            this.button13.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.btnDivideByCenterWithoutDMA_Click);
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(240, 735);
+            this.button14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(227, 28);
+            this.button14.TabIndex = 129;
+            this.button14.Text = "Divide By Center w/ DMA";
+            this.button14.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.button14.UseVisualStyleBackColor = true;
+            // 
             // frmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1220, 652);
+            this.ClientSize = new System.Drawing.Size(1627, 802);
+            this.Controls.Add(this.button14);
+            this.Controls.Add(this.button13);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button10);
@@ -339,6 +379,7 @@
             this.Controls.Add(this.btnAbrirImagem);
             this.Controls.Add(this.pictBoxImg2);
             this.Controls.Add(this.pictBoxImg1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Formulário Principal";
@@ -380,6 +421,8 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button14;
     }
 }
 

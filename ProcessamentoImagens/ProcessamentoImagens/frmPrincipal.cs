@@ -100,6 +100,17 @@ namespace ProcessamentoImagens
             pictBoxImg2.Image = imgDest;
         }
 
+        private void btnFlipHorizontalWithDMA_Click(Object sender, EventArgs e)
+        {
+            if (!pictBoxImg2.Visible)
+                changePictureBoxesVisibility();
+
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.flip_horizontal_dma(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
         private void btnFlipVerticalWithoutDMA_Click(Object sender, EventArgs e)
         {
             if (!pictBoxImg2.Visible)
@@ -205,6 +216,17 @@ namespace ProcessamentoImagens
             Bitmap imgDest = new Bitmap(image);
             imageBitmap = (Bitmap)image;
             Filtros.flip_diagonal(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnDivideByCenterWithoutDMA_Click(Object obj, EventArgs e)
+        {
+            if(!pictBoxImg2.Visible)
+                changePictureBoxesVisibility();
+
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.divide_center(imageBitmap, imgDest);
             pictBoxImg2.Image = imgDest;
         }
 

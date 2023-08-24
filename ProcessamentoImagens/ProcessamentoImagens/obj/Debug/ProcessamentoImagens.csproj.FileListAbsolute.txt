@@ -27,3 +27,13 @@ D:\Documentos\COLLEGE 2023.2\Processamento de Imagens\image-processing\Processam
 D:\Documentos\COLLEGE 2023.2\Processamento de Imagens\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.csproj.CoreCompileInputs.cache
 D:\Documentos\COLLEGE 2023.2\Processamento de Imagens\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.exe
 D:\Documentos\COLLEGE 2023.2\Processamento de Imagens\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.pdb
+C:\Users\Henrique Dias\Documents\Facul\image-processing\ProcessamentoImagens\ProcessamentoImagens\bin\Debug\ProcessamentoImagens.exe.config
+C:\Users\Henrique Dias\Documents\Facul\image-processing\ProcessamentoImagens\ProcessamentoImagens\bin\Debug\ProcessamentoImagens.exe
+C:\Users\Henrique Dias\Documents\Facul\image-processing\ProcessamentoImagens\ProcessamentoImagens\bin\Debug\ProcessamentoImagens.pdb
+C:\Users\Henrique Dias\Documents\Facul\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.csproj.AssemblyReference.cache
+C:\Users\Henrique Dias\Documents\Facul\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.frmPrincipal.resources
+C:\Users\Henrique Dias\Documents\Facul\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.Properties.Resources.resources
+C:\Users\Henrique Dias\Documents\Facul\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.csproj.GenerateResource.cache
+C:\Users\Henrique Dias\Documents\Facul\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.csproj.CoreCompileInputs.cache
+C:\Users\Henrique Dias\Documents\Facul\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.exe
+C:\Users\Henrique Dias\Documents\Facul\image-processing\ProcessamentoImagens\ProcessamentoImagens\obj\Debug\ProcessamentoImagens.pdb
