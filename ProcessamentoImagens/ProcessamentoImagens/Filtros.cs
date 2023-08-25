@@ -344,35 +344,56 @@ namespace ProcessamentoImagens
             {
                 byte* src = (byte*)bitmapDataSrc.Scan0.ToPointer();
                 //byte* srcFinal = src + (width * height);
-                byte* srcFinal;
+                byte* srcFinal, startLine;
                 byte* dest = (byte*)bitmapDataDest.Scan0.ToPointer();
                 byte* destFinal;
                 int r, g, b, r2, g2, b2;
 
                 for (int y = 0; y < height; y++)
                 {
-                    srcFinal = destFinal = src + width*3 -1;
-                    for (int x = 0; x < width; x++)
+                    //srcFinal = destFinal = src + width*3 - 1;
+                    startLine = src;
+                    for (int x = 0; x < half; x++)
                     {
+
+                        // pega as cores do lado esquerdos
                         b = *(src++);
                         g = *(src++);
                         r = *(src++);
 
-                        r2 = *(srcFinal--);
-                        g2 = *(srcFinal--);
-                        b2 = *(srcFinal--);
+                        // coloca ponteiro no lado direito
+                        byte* aux = src;
+                        src = startLine + width * 3 - 1 - x * 3;
 
+                        //r2 = *(srcFinal--);
+                        //g2 = *(srcFinal--);
+                        //b2 = *(srcFinal--);
+
+
+                        // pega as cores do lado direito
+                        r2 = *(src--);
+                        g2 = *(src--);
+                        b2 = *(src--);
+
+                        // volta o ponteiro pro lado esquerdo
+                        src = aux;
+
+                        // coloca sas cores pegas do lado direito de src, no lado esquerdo de dest
                         *(dest++) = (byte)b2;
                         *(dest++) = (byte)g2;
                         *(dest++) = (byte)r2;
 
-                        byte* aux = dest;
-                        dest = destFinal;
+                        // coloca o ponteiro no lado direito
+                        aux = dest;
+                        //dest = destFinal;
+                        dest = startLine + width * 3 - 1 - x * 3;
 
-                        *(dest--) = (byte)r; destFinal--;
-                        *(dest--) = (byte)g; destFinal--;
-                        *(dest--) = (byte)b; destFinal--;
+                        // coloca sas cores pegas do lado esquerdo de src, no lado direito de dest
+                        *(dest--) = (byte)r; //destFinal--;
+                        *(dest--) = (byte)g; //destFinal--;
+                        *(dest--) = (byte)b; //destFinal--;
 
+                        // volta o ponteiro pro lado esquerdo
                         dest = aux;
 
 
@@ -384,7 +405,7 @@ namespace ProcessamentoImagens
                         //dest.SetPixel(x, y, inverse);
                         //dest.SetPixel(width - 1 - x, y, color);
                     }
-                    src += padding;
+                    src +=  padding;
                     dest += padding;
                 }
             }
