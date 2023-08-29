@@ -329,7 +329,7 @@ namespace ProcessamentoImagens
             int pixelSize = 3;
             //int r, g, b;
 
-            int half = width / 2;
+            //int half = width / 2;
 
             //lock dados bitmap origem
             BitmapData bitmapDataSrc = imgSrc.LockBits(new Rectangle(0, 0, width, height),
@@ -353,7 +353,7 @@ namespace ProcessamentoImagens
                 {
                     //srcFinal = destFinal = src + width*3 - 1;
                     startLine = src;
-                    for (int x = 0; x < half; x++)
+                    for (int x = 0; x < width; x++)
                     {
 
                         // pega as cores do lado esquerdos
@@ -423,7 +423,7 @@ namespace ProcessamentoImagens
             int pixelSize = 3;
             //int r, g, b;
 
-            int half = width / 2;
+            int half = height / 2;
 
             //lock dados bitmap origem
             BitmapData bitmapDataSrc = imgSrc.LockBits(new Rectangle(0, 0, width, height),
@@ -445,38 +445,33 @@ namespace ProcessamentoImagens
 
                 for (int y = 0; y < height; y++)
                 {
-                    srcFinal = destFinal = src + width * 3 - 1;
+                    srcFinal = destFinal = (byte*)bitmapDataSrc.Scan0.ToPointer() + bitmapDataSrc.Stride * (height - 1 - y);
                     for (int x = 0; x < width; x++)
                     {
                         b = *(src++);
                         g = *(src++);
                         r = *(src++);
 
-                        r2 = *(srcFinal--);
-                        g2 = *(srcFinal--);
-                        b2 = *(srcFinal--);
+                        b2 = *(srcFinal++);
+                        g2 = *(srcFinal++);
+                        r2 = *(srcFinal++);
 
                         *(dest++) = (byte)b2;
                         *(dest++) = (byte)g2;
                         *(dest++) = (byte)r2;
 
-                        byte* aux = dest;
-                        dest = destFinal;
+                        *(destFinal++) = (byte)b;
+                        *(destFinal++) = (byte)g;
+                        *(destFinal++) = (byte)r;
+                        //byte* aux = dest;
+                        //dest = destFinal;
 
-                        *(dest--) = (byte)r; destFinal--;
-                        *(dest--) = (byte)g; destFinal--;
-                        *(dest--) = (byte)b; destFinal--;
+                        //*(dest--) = (byte)r; destFinal--;
+                        //*(dest--) = (byte)g; destFinal--;
+                        //*(dest--) = (byte)b; destFinal--;
 
-                        dest = aux;
+                        //dest = aux;
 
-
-
-
-
-                        //Color inverse = src.GetPixel(width - 1 - x, y);
-
-                        //dest.SetPixel(x, y, inverse);
-                        //dest.SetPixel(width - 1 - x, y, color);
                     }
                     src += padding;
                     dest += padding;

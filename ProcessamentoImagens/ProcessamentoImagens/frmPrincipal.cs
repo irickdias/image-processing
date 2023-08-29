@@ -108,6 +108,7 @@ namespace ProcessamentoImagens
             Bitmap imgDest = new Bitmap(image);
             imageBitmap = (Bitmap)image;
             Filtros.flip_horizontal_dma(imageBitmap, imgDest);
+            //pictBoxImg2.Image = null;
             pictBoxImg2.Image = imgDest;
         }
 
@@ -119,6 +120,18 @@ namespace ProcessamentoImagens
             Bitmap imgDest = new Bitmap(image);
             imageBitmap = (Bitmap)image;
             Filtros.flip_vertical(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnFlipVerticalWithDMA_Click(Object sender, EventArgs e)
+        {
+            if (!pictBoxImg2.Visible)
+                changePictureBoxesVisibility();
+
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.flip_vertical_dma(imageBitmap, imgDest);
+            //pictBoxImg2.Image = null;
             pictBoxImg2.Image = imgDest;
         }
 

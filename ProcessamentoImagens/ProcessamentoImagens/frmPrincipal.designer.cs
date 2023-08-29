@@ -67,7 +67,7 @@
             // 
             this.pictBoxImg1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictBoxImg1.Location = new System.Drawing.Point(7, 7);
-            this.pictBoxImg1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictBoxImg1.Margin = new System.Windows.Forms.Padding(4);
             this.pictBoxImg1.Name = "pictBoxImg1";
             this.pictBoxImg1.Size = new System.Drawing.Size(800, 615);
             this.pictBoxImg1.TabIndex = 102;
@@ -77,7 +77,7 @@
             // 
             this.pictBoxImg2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictBoxImg2.Location = new System.Drawing.Point(813, 7);
-            this.pictBoxImg2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictBoxImg2.Margin = new System.Windows.Forms.Padding(4);
             this.pictBoxImg2.Name = "pictBoxImg2";
             this.pictBoxImg2.Size = new System.Drawing.Size(800, 615);
             this.pictBoxImg2.TabIndex = 105;
@@ -86,7 +86,7 @@
             // btnAbrirImagem
             // 
             this.btnAbrirImagem.Location = new System.Drawing.Point(7, 630);
-            this.btnAbrirImagem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAbrirImagem.Margin = new System.Windows.Forms.Padding(4);
             this.btnAbrirImagem.Name = "btnAbrirImagem";
             this.btnAbrirImagem.Size = new System.Drawing.Size(135, 28);
             this.btnAbrirImagem.TabIndex = 106;
@@ -97,7 +97,7 @@
             // btnLimpar
             // 
             this.btnLimpar.Location = new System.Drawing.Point(7, 666);
-            this.btnLimpar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLimpar.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(135, 28);
             this.btnLimpar.TabIndex = 107;
@@ -108,7 +108,7 @@
             // btnLuminanciaSemDMA
             // 
             this.btnLuminanciaSemDMA.Location = new System.Drawing.Point(149, 630);
-            this.btnLuminanciaSemDMA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLuminanciaSemDMA.Margin = new System.Windows.Forms.Padding(4);
             this.btnLuminanciaSemDMA.Name = "btnLuminanciaSemDMA";
             this.btnLuminanciaSemDMA.Size = new System.Drawing.Size(191, 28);
             this.btnLuminanciaSemDMA.TabIndex = 108;
@@ -119,7 +119,7 @@
             // btnLuminanciaComDMA
             // 
             this.btnLuminanciaComDMA.Location = new System.Drawing.Point(149, 666);
-            this.btnLuminanciaComDMA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLuminanciaComDMA.Margin = new System.Windows.Forms.Padding(4);
             this.btnLuminanciaComDMA.Name = "btnLuminanciaComDMA";
             this.btnLuminanciaComDMA.Size = new System.Drawing.Size(191, 28);
             this.btnLuminanciaComDMA.TabIndex = 109;
@@ -130,7 +130,7 @@
             // btnNegativoComDMA
             // 
             this.btnNegativoComDMA.Location = new System.Drawing.Point(348, 666);
-            this.btnNegativoComDMA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNegativoComDMA.Margin = new System.Windows.Forms.Padding(4);
             this.btnNegativoComDMA.Name = "btnNegativoComDMA";
             this.btnNegativoComDMA.Size = new System.Drawing.Size(173, 28);
             this.btnNegativoComDMA.TabIndex = 111;
@@ -141,7 +141,7 @@
             // btnNegativoSemDMA
             // 
             this.btnNegativoSemDMA.Location = new System.Drawing.Point(348, 630);
-            this.btnNegativoSemDMA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNegativoSemDMA.Margin = new System.Windows.Forms.Padding(4);
             this.btnNegativoSemDMA.Name = "btnNegativoSemDMA";
             this.btnNegativoSemDMA.Size = new System.Drawing.Size(173, 28);
             this.btnNegativoSemDMA.TabIndex = 110;
@@ -175,7 +175,7 @@
             // 
             this.pictureBoxRed.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBoxRed.Location = new System.Drawing.Point(815, 329);
-            this.pictureBoxRed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBoxRed.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxRed.Name = "pictureBoxRed";
             this.pictureBoxRed.Size = new System.Drawing.Size(403, 293);
             this.pictureBoxRed.TabIndex = 114;
@@ -185,7 +185,7 @@
             // 
             this.pictureBoxNormal.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBoxNormal.Location = new System.Drawing.Point(813, 7);
-            this.pictureBoxNormal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBoxNormal.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxNormal.Name = "pictureBoxNormal";
             this.pictureBoxNormal.Size = new System.Drawing.Size(404, 314);
             this.pictureBoxNormal.TabIndex = 115;
@@ -195,7 +195,7 @@
             // 
             this.pictureBoxGreen.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBoxGreen.Location = new System.Drawing.Point(1227, 329);
-            this.pictureBoxGreen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBoxGreen.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxGreen.Name = "pictureBoxGreen";
             this.pictureBoxGreen.Size = new System.Drawing.Size(388, 293);
             this.pictureBoxGreen.TabIndex = 116;
@@ -205,7 +205,7 @@
             // 
             this.pictureBoxBlue.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBoxBlue.Location = new System.Drawing.Point(1227, 7);
-            this.pictureBoxBlue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBoxBlue.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxBlue.Name = "pictureBoxBlue";
             this.pictureBoxBlue.Size = new System.Drawing.Size(388, 314);
             this.pictureBoxBlue.TabIndex = 117;
@@ -267,6 +267,7 @@
             this.button7.TabIndex = 122;
             this.button7.Text = "Flip Vertical w/ DMA";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.btnFlipVerticalWithDMA_Click);
             // 
             // button8
             // 
@@ -379,7 +380,7 @@
             this.Controls.Add(this.btnAbrirImagem);
             this.Controls.Add(this.pictBoxImg2);
             this.Controls.Add(this.pictBoxImg1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Formulário Principal";
