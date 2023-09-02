@@ -232,6 +232,17 @@ namespace ProcessamentoImagens
             pictBoxImg2.Image = imgDest;
         }
 
+        private void btnFlipDiagonalWithDMA_Click(Object sender, EventArgs e)
+        {
+            if (!pictBoxImg2.Visible)
+                changePictureBoxesVisibility();
+
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.flip_diagonal_dma(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
         private void btnDivideByCenterWithoutDMA_Click(Object obj, EventArgs e)
         {
             if(!pictBoxImg2.Visible)
@@ -240,6 +251,17 @@ namespace ProcessamentoImagens
             Bitmap imgDest = new Bitmap(image);
             imageBitmap = (Bitmap)image;
             Filtros.divide_center(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnRotate90WithoutDMA_Click(Object sender, EventArgs e)
+        {
+            if (!pictBoxImg2.Visible)
+                changePictureBoxesVisibility();
+
+            Bitmap imgDest = new Bitmap(image.Height, image.Width);
+            imageBitmap = (Bitmap)image;
+            Filtros.rotate_90(imageBitmap, imgDest);
             pictBoxImg2.Image = imgDest;
         }
 
@@ -256,5 +278,6 @@ namespace ProcessamentoImagens
         {
 
         }
+
     }
 }

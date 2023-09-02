@@ -233,6 +233,25 @@ namespace ProcessamentoImagens
 
         }
 
+        public static void rotate_90(Bitmap src, Bitmap dest)
+        {
+            int width = src.Width;
+            int height = src.Height;
+            int inverse_width = height;
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    //obtendo a cor do pixel
+                    Color cor = src.GetPixel(x, y);
+
+
+                    dest.SetPixel(inverse_width - 1 - y, x, cor);
+                }
+            }
+        }
+
         //com acesso direto a memória
         public static void convert_to_grayDMA(Bitmap imageBitmapSrc, Bitmap imageBitmapDest)
         {
@@ -482,6 +501,14 @@ namespace ProcessamentoImagens
             //unlock imagem destino
             imgDest.UnlockBits(bitmapDataDest);
 
+        }
+
+        public static void flip_diagonal_dma(Bitmap imgSrc, Bitmap imgDest)
+        {
+            Bitmap imgAux = new Bitmap(imgSrc);
+
+            flip_horizontal_dma(imgSrc, imgAux);
+            flip_vertical_dma(imgAux, imgDest);
         }
 
         public static void separate_channels_dma(Bitmap imgSrc, Bitmap imgDestR, Bitmap imgDestG, Bitmap imgDestB)
