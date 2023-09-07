@@ -339,6 +339,7 @@
             this.button14.Text = "Divide By Center w/ DMA";
             this.button14.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.btnDivideByCenterWithDMA_Click);
             // 
             // button15
             // 

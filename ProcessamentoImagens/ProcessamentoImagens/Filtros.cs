@@ -704,60 +704,109 @@ namespace ProcessamentoImagens
             {
                 byte* src = (byte*)bitmapDataSrc.Scan0.ToPointer();
                 byte* dest = (byte*)bitmapDataDest.Scan0.ToPointer();
-                byte* halfPointer = (byte*)(half * bitmapDataSrc.Stride);
-                byte* auxSup, auxInf, srcSupHalf, srcInfHalf;
+                byte* halfPointerSrc = src + (half * bitmapDataSrc.Stride);
+                //byte* halfPointerSrc = src + bitmapDataSrc.Height;
+                byte* halfPointerDest = dest + (half * bitmapDataDest.Stride);
+                //byte* halfPointerDest = dest + bitmapDataDest.Height;
+                byte* destSupHalf, destInfHalf, srcSupHalf, srcInfHalf;
                 int r, g, b, r2, g2, b2, r3, g3, b3, r4, g4, b4;
 
-                int halfLine = (bitmapDataSrc.Stride - padding) / 2;
+                //int halfLine = (bitmapDataSrc.Stride - padding) / 2;
+                int halfLine = half * pixelSize;
+                int ctr;
                 //srcSupHalf = (byte*)0;
                 for (int y = 0; y < height; y++)
                 {
                     //int halfLine = (int)src + (bitmapDataSrc.Stride - padding) / 2;
+                    srcSupHalf = src + halfLine;
+                    srcInfHalf = halfPointerSrc + halfLine;
+
+                    destSupHalf = dest + halfLine;
+                    destInfHalf = halfPointerDest + halfLine;
+
+                    ctr = 0;
                     for (int x = 0; x < half; x++)
                     {
-                        srcSupHalf = src + halfLine;
-                        srcInfHalf = halfPointer + halfLine;
-                        for (int k=0; k < halfLine; k++)
+                        
+                        //for (int k=0; k < halfLine; k+=3)
+                        if( ctr < halfLine)
                         {
                             //obtendo a cor do pixel
                             //Color cor = imageBitmapSrc.GetPixel(x, y);
 
-                            // canto superior esquerdo
+                            // ORIGEM
+
+                            // canto superior esquerdo de src
                             b = *(src++);
                             g = *(src++);
                             r = *(src++);
 
-                            //; ; aux = (byte*)src + halfLine + k * 3;
 
-                            // canto superior direito
+                            // canto superior direito de src
                             b2 = *(srcSupHalf++);
                             g2 = *(srcSupHalf++);
                             r2 = *(srcSupHalf++);
 
-                            // canto inferior esquerdo
-                            b3 = *(halfPointer++);
-                            g3 = *(halfPointer++);
-                            r3 = *(halfPointer++);
+                            // canto inferior esquerdo de src
+                            b3 = *(halfPointerSrc++);
+                            g3 = *(halfPointerSrc++);
+                            r3 = *(halfPointerSrc++);
 
-                            //aux = (byte*)halfLine + k * 3;
 
-                            // canto inferior direito
+                            // canto inferior direito de src
                             b4 = *(srcInfHalf++);
                             g4 = *(srcInfHalf++);
                             r4 = *(srcInfHalf++);
 
+                            // DESTINO
 
+                            // canto superior esquerdo de dest
                             *(dest++) = (byte)b4;
                             *(dest++) = (byte)g4;
                             *(dest++) = (byte)r4;
+
+                            // canto superior direito de dest
+                            *(destSupHalf++) = (byte)b3;
+                            *(destSupHalf++) = (byte)g3;
+                            *(destSupHalf++) = (byte)r3;
+
+                            // canto inferior esquerdo de dest
+                            *(halfPointerDest++) = (byte)b2;
+                            *(halfPointerDest++) = (byte)g2;
+                            *(halfPointerDest++) = (byte)r2;
+
+                            // canto inferior direito de dest
+                            *(destInfHalf++) = (byte)b;
+                            *(destInfHalf++) = (byte)g;
+                            *(destInfHalf++) = (byte)r;
+
+
+                        }
+                        else
+                        {
+                            src++;
+                            halfPointerSrc++;
+
+                            dest++;
+                            halfPointerDest++;
                         }
                         
-                    }
 
-                    src += halfLine + padding;
-                    halfPointer += halfLine + padding;
+                    }
+                    //src += halfLine + padding;
+                    //halfPointerSrc += halfLine + padding;
                     //srcHalf += padding;
+                    //dest += halfLine + padding;
+                    //halfPointerDest += halfLine + padding;
+
+                    src += padding;
+                    halfPointerSrc += padding;
+
                     dest += padding;
+                    halfPointerDest += padding;
+
+
+
                 }
 
             }
