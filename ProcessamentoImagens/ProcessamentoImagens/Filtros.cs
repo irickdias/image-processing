@@ -252,6 +252,68 @@ namespace ProcessamentoImagens
             }
         }
 
+        public static void segment_4(Bitmap img)
+        {
+            int width = img.Width;
+            int height = img.Height;
+            int inverse_width = height;
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    Color cor = img.GetPixel(x, y);
+                    if (cor.R == 0 && cor.G == 0 && cor.B == 0)
+                    {
+                        img.SetPixel(x, y, Color.AliceBlue);
+
+                        // check right pixel
+                        segment_4_mask(img, cor, x, y + 1);
+
+                        // check bottom pixel
+                        segment_4_mask(img, cor, x + 1, y);
+
+                        // check left pixel
+                        segment_4_mask(img, cor, x, y - 1);
+
+                        // check top pixel
+                        segment_4_mask(img, cor, x - 1, y);
+                    }
+
+                    //obtendo a cor do pixel
+
+
+
+                    //dest.SetPixel(inverse_width - 1 - y, x, cor);
+                }
+            }
+        }
+
+        private static void segment_4_mask(Bitmap img, Color black, int x, int y)
+        {
+            if (img.GetPixel(x, y) != null)
+            {
+                Color cor = img.GetPixel(x, y);
+                if (cor == black)
+                {
+                    img.SetPixel(x, y, Color.AliceBlue);
+
+                    // check right pixel
+                    segment_4_mask(img, cor, x, y + 1);
+
+                    // check bottom pixel
+                    segment_4_mask(img, cor, x + 1, y);
+
+                    // check left pixel
+                    segment_4_mask(img, cor, x, y - 1);
+
+                    // check top pixel
+                    segment_4_mask(img, cor, x - 1, y);
+                }
+            }
+
+        }
+
         //com acesso direto a memória
         public static void convert_to_grayDMA(Bitmap imageBitmapSrc, Bitmap imageBitmapDest)
         {
