@@ -762,5 +762,10 @@ namespace ProcessamentoImagens
 
             }
         }
+
+        public static void rotate_90_dma(Bitmap imgSrc, Bitmap imgDest)
+        {
+
+        }
     }
 }
