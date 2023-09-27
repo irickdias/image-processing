@@ -254,6 +254,17 @@ namespace ProcessamentoImagens
             pictBoxImg2.Image = imgDest;
         }
 
+        private void btnDivideByCenterWithDMA_Click(Object obj, EventArgs e)
+        {
+            if (!pictBoxImg2.Visible)
+                changePictureBoxesVisibility();
+
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.divide_center_dma(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
         private void btnRotate90WithoutDMA_Click(Object sender, EventArgs e)
         {
             if (!pictBoxImg2.Visible)
