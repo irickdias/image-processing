@@ -291,7 +291,7 @@ namespace ProcessamentoImagens
 
         private static void segment_4_mask(Bitmap img, Color black, int x, int y)
         {
-            if (img.GetPixel(x, y) != null)
+            if (x < img.Width-1 && y < img.Height-1)
             {
                 Color cor = img.GetPixel(x, y);
                 if (cor == black)
@@ -312,6 +312,39 @@ namespace ProcessamentoImagens
                 }
             }
 
+        }
+
+        public static void spacial_resolution(Bitmap img, Bitmap dest)
+        {
+            int width = img.Width;
+            int height = img.Height;
+            //int inverse_width = height;
+            Color cor1, cor2, cor3, cor4;
+            int halfx = width / 2;
+            int halfy = height / 2;
+
+            int novox = 0, novoy = 0;
+            for (int y = 0; y < height; y+=2)
+            {
+                novox = 0;
+                for (int x = 0; x < width; x+=2)
+                {
+                    cor1 = img.GetPixel(x, y);
+                    cor2 = img.GetPixel(x, y + 1);
+                    cor3 = img.GetPixel(x+1 , y);
+                    cor4 = img.GetPixel(x+1, y + 1);
+
+                    int media_r = (cor1.R + cor2.R + cor3.R + cor4.R) / 4;
+                    int media_g = (cor1.G + cor2.G + cor3.G + cor4.G) / 4;
+                    int media_b = (cor1.B + cor2.B + cor3.B + cor4.B) / 4;
+
+                    Color novo = Color.FromArgb(media_r, media_g, media_b);
+                    
+                    dest.SetPixel(novox, novoy, novo);
+                    novox++;
+                }
+                novoy++;
+            }
         }
 
         //com acesso direto a memória
