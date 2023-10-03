@@ -298,6 +298,17 @@ namespace ProcessamentoImagens
             pictBoxImg2.Image = imgDest;
         }
 
+        private void btnSpacialResolutionDMA_Click(Object sender, EventArgs e)
+        {
+            if (!pictBoxImg2.Visible)
+                changePictureBoxesVisibility();
+
+            Bitmap imgDest = new Bitmap(image.Width / 2, image.Height / 2);
+            imageBitmap = (Bitmap)image;
+            Filtros.spacial_resolution_dma(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
         private void changePictureBoxesVisibility()
         {
             pictBoxImg2.Visible = true;

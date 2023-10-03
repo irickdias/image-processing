@@ -76,5 +76,37 @@ namespace ProcessamentoImagens
             Filtros.segmento4(imageBitmap, imgDest);
             pictBoxImg2.Image = imgDest;
         }
+
+        private void btnSegmento8SemDMA_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.segmento8(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnSegmento4ComDMA_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.segmento4_dma(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnSpacialResolution_Click(Object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image.Width / 2, image.Height / 2);
+            imageBitmap = (Bitmap)image;
+            Filtros.spacial_resolution(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnSpacialResolutionDMA_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image.Width / 2, image.Height / 2);
+            imageBitmap = (Bitmap)image;
+            Filtros.spacial_resolution_dma(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
     }
 }
