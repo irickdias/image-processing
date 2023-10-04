@@ -162,6 +162,59 @@ namespace ProcessamentoImagens
             }
         }
 
+        public static void bitplane_slicing_dma(Bitmap src, string fileName)
+        {
+            for(int i=0; i<8; i++)
+            {
+                Bitmap n = getBitmapPlaneDMA(src, i);
+                n.Save("../../../Images/Slicing" + fileName + "-" + i + ".jpg", ImageFormat.Jpeg);
+            }
+        }
+
+        private static Bitmap getBitmapPlaneDMA(Bitmap srcImg, int bitPlane)
+        {
+            Bitmap newBitmap = new Bitmap(srcImg);
+            int width = srcImg.Width;
+            int height = srcImg.Height;
+            int pixelSize = 3;
+
+            BitmapData bitmapDataSrc = srcImg.LockBits(new Rectangle(0, 0, width, height),
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+            BitmapData bitmapDataDest = newBitmap.LockBits(new Rectangle(0, 0, width, height),
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+
+            int padding = bitmapDataSrc.Stride - (width * pixelSize);
+
+            unsafe
+            {
+                Byte* src = (byte*)bitmapDataSrc.Scan0.ToPointer();
+                Byte* dest = (byte*)bitmapDataDest.Scan0.ToPointer();
+                int r, g, b;
+
+                for(int y=0; y<height; y++)
+                {
+                    for(int x=0; x<width; x++)
+                    {
+                        b = (*src++);
+                        g = (*src++);
+                        r = (*src++);
+
+                        var bit = getBit((byte)b, bitPlane);
+
+                        (*dest++) = (byte)(255 * bit);
+                        (*dest++) = (byte)(255 * bit);
+                        (*dest++) = (byte)(255 * bit);
+                    }
+                    src += padding;
+                    dest += padding;
+                }
+            }
+            srcImg.UnlockBits(bitmapDataSrc);
+            newBitmap.UnlockBits(bitmapDataDest);
+
+            return newBitmap;
+        }
+
         private static Bitmap getBitmapPlane(Bitmap src, int bitPlane)
         {
             Bitmap newBitmap = new Bitmap(src);
@@ -190,6 +243,114 @@ namespace ProcessamentoImagens
             return (b >> bitIndex) & 0x01;
             //return (b & (1 >> bitIndex));
             //return ((b >> bitIndex) & 1) != 0;
+        }
+
+        public static int[] histogram(Bitmap srcimg)
+        {
+            int width = srcimg.Width;
+            int height = srcimg.Height;
+            int[] hist = new int[256];
+
+            for(int y=0; y<height; y++)
+            {
+                for(int x = 0; x<width; x++)
+                {
+                    Color color = srcimg.GetPixel(x, y);
+
+                    hist[color.R]++;
+
+
+                }
+            }
+
+            return hist;
+        }
+
+        public static int[] histogram_dma(Bitmap srcimg)
+        {
+            int width = srcimg.Width;
+            int height = srcimg.Height;
+            int pixelSize = 3;
+            int[] hist = new int[256];
+
+            BitmapData bitmapDataSrc = srcimg.LockBits(new Rectangle(0, 0, width, height), 
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+
+            int padding = bitmapDataSrc.Stride - (width * pixelSize);
+
+            unsafe
+            {
+                Byte* src = (byte*)bitmapDataSrc.Scan0.ToPointer();
+                int r, g, b;
+
+                for( int y=0; y<height; y++) 
+                {
+                    for(int x=0; x<width; x++)
+                    {
+                        b = (*src++);
+                        g = (*src++);
+                        r = (*src++);
+
+                        hist[b]++;
+                    }
+                    src += padding;
+                }
+            }
+            srcimg.UnlockBits(bitmapDataSrc);
+
+            return hist;
+        }
+
+        public static void equalization(Bitmap src, Bitmap dest, int[] hist)
+        {
+            int width = src.Width;
+            int height = src.Height;
+            int[] eq = new int[256];
+            int sum = 0;
+            int g = graylevels(hist);
+            Console.WriteLine(g);
+            double l = (src.Width * src.Height) / g;
+            Console.WriteLine(l);
+            for(int i=0; i<hist.Length; i++)
+            {
+                if (hist[i] != 0)
+                {
+                    Console.WriteLine(hist[i]);
+                    sum += hist[i];
+                    Console.WriteLine(sum);
+
+                    int res = (int)Math.Round((sum / l) - 1);
+                    Console.WriteLine(res);
+                    if (res < 0)
+                        eq[i] = 0;
+                    else
+                        eq[i] = res;
+                }
+            }
+
+            for(int y=0; y<height; y++)
+            {
+                for(int x=0; x<width; x++)
+                {
+                    Color color = src.GetPixel(x, y);
+
+                    Color c = Color.FromArgb(eq[color.R], eq[color.R], eq[color.R]);
+                    dest.SetPixel(x, y, c);
+                }
+            }
+        }
+
+        private static int graylevels(int[] hist)
+        {
+            int g = 0;
+
+            for(int i=0; i<hist.Length; i++)
+            {
+                if (hist[i] != 0)
+                    g++;
+            }
+
+            return g;
         }
     }
 }

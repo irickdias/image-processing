@@ -86,5 +86,14 @@ namespace ProcessamentoImagens
             //pictBoxImg2.Image = imgDest;
             label1.Text = "Fatiamento do plano de bits realizados com sucesso";
         }
+
+        private void btnEqualizar_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            int[] f = Filtros.histogram(imageBitmap);
+            Filtros.equalization(imageBitmap, imgDest, f);
+            pictBoxImg2.Image = imgDest;
+        }
     }
 }
