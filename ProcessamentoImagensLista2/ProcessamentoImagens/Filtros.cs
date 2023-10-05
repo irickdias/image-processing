@@ -385,6 +385,95 @@ namespace ProcessamentoImagens
             destImg.UnlockBits(bitmapDataDest);
         }
 
+        public static void segmento8_dma(Bitmap srcImg, Bitmap destImg)
+        {
+            int width = srcImg.Width;
+            int height = srcImg.Height;
+            int pixelSize = 3;
+
+            BitmapData bitmapDataSrc = srcImg.LockBits(new Rectangle(0, 0, width, height),
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+            BitmapData bitmapDataDest = destImg.LockBits(new Rectangle(0, 0, width, height),
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+
+            int padding = bitmapDataSrc.Stride - (width * pixelSize);
+
+            unsafe
+            {
+                Byte* src = (byte*)bitmapDataSrc.Scan0.ToPointer();
+                Byte* dest = (byte*)bitmapDataDest.Scan0.ToPointer();
+                Byte* aux, aux2;
+                int r, g, b, r2, g2, b2, coord, colorR, colorG, colorB;
+                Color color = new Color();
+                Random rand = new Random();
+                List<Segment> segments = new List<Segment>();
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        // ir para uma coordenada em dma
+                        // coord = (y*bitmapDataSrc.Stride) + (x*pixelSize)
+                        b = (*src++);
+                        g = (*src++);
+                        r = (*src++);
+
+                        aux = src; // guarda onde ele está após ler pixel atual
+
+                        b2 = (*dest++);
+                        g2 = (*dest++);
+                        r2 = (*dest++);
+
+                        aux2 = dest;
+
+                        if (r == 0 && g == 0 && b == 0)
+                        {
+
+                            Ponto newPoint = new Ponto(x, y);
+                            (int pos, bool found) = isInSegment(segments, newPoint);
+                            if (!found)
+                            {
+                                colorR = rand.Next(256);
+                                colorG = rand.Next(256);
+                                colorB = rand.Next(256);
+                                color = Color.FromArgb(colorR, colorG, colorB);
+
+                                Segment newSegment = new Segment();
+                                newSegment.segment.Add(newPoint);
+                                segments.Add(newSegment);
+                            }
+
+                            if (r2 == 0 && g2 == 0 && b2 == 0) // precisa pintar o pixel atual de outra cor
+                            {
+                                dest = dest - 3;
+                                (*dest++) = (byte)color.B;
+                                (*dest++) = (byte)color.G;
+                                (*dest++) = (byte)color.R;
+                            }
+
+                            checkLeftPixelDMA(src, dest, bitmapDataSrc, bitmapDataDest, segments, x - 1, y, width, height, pos, bitmapDataSrc.Stride, pixelSize, color);
+                            checkRightPixelDMA(src, dest, bitmapDataSrc, bitmapDataDest, segments, x + 1, y, width, height, pos, bitmapDataSrc.Stride, pixelSize, color);
+                            checkTopPixelDMA(src, dest, bitmapDataSrc, bitmapDataDest, segments, x, y - 1, width, height, pos, bitmapDataSrc.Stride, pixelSize, color);
+                            checkBottomPixelDMA(src, dest, bitmapDataSrc, bitmapDataDest, segments, x, y + 1, width, height, pos, bitmapDataSrc.Stride, pixelSize, color);
+                            checkTopLeftPixelDMA(src, dest, bitmapDataSrc, bitmapDataDest, segments, x - 1, y - 1, width, height, pos, bitmapDataSrc.Stride, pixelSize, color);
+                            checkTopRightPixelDMA(src, dest, bitmapDataSrc, bitmapDataDest, segments, x + 1, y - 1, width, height, pos, bitmapDataSrc.Stride, pixelSize, color);
+                            checkBottomLeftPixelDMA(src, dest, bitmapDataSrc, bitmapDataDest, segments, x - 1, y + 1, width, height, pos, bitmapDataSrc.Stride, pixelSize, color);
+                            checkBottomRightPixelDMA(src, dest, bitmapDataSrc, bitmapDataDest, segments, x + 1, y + 1, width, height, pos, bitmapDataSrc.Stride, pixelSize, color);
+
+                            src = aux;
+                            dest = aux2;
+                        }
+
+                    }
+                    src += padding;
+                    dest += padding;
+                }
+            }
+            //unlock imagem origem 
+            srcImg.UnlockBits(bitmapDataSrc);
+            //unlock imagem destino
+            destImg.UnlockBits(bitmapDataDest);
+        }
+
         public static void segmento8(Bitmap src, Bitmap dest)
         {
             int width = src.Width;
@@ -589,6 +678,174 @@ namespace ProcessamentoImagens
                 //int coord = (y * stride) + (x * pixelSize);
                 //src = (byte*)coord;
                 src = (byte*)bitmapDataSrc.Scan0 + y * stride + x * pixelSize;
+                b = (*src++);
+                g = (*src++);
+                r = (*src++);
+
+                if (r == 0 && g == 0 && b == 0)
+                {
+                    Ponto newPoint = new Ponto(x, y);
+                    bool found = false;
+                    foreach (var ponto in segments[pos].segment)
+                    {
+                        if (ponto.x == x && ponto.y == y)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        segments[pos].segment.Add(newPoint);
+                        //dest = (byte*)coord;
+                        dest = (byte*)bitmapDataDest.Scan0 + y * stride + x * pixelSize;
+                        *dest++ = (byte)color.B;
+                        *dest++ = (byte)color.G;
+                        *dest++ = (byte)color.R;
+                    }
+
+                }
+
+            }
+
+        }
+
+        private static unsafe void checkTopLeftPixelDMA(Byte* src, Byte* dest, BitmapData bitmapDataSrc, BitmapData bitmapDataDest, List<Segment> segments, int x, int y, int width, int height, int pos, int stride, int pixelSize, Color color)
+        {
+            if (x > 0 && y > 0)
+            {
+
+                int r, g, b;
+                //int coord = (y * stride) + (x * pixelSize);
+                src = (byte*)bitmapDataSrc.Scan0 + y * stride + x * pixelSize;
+                //if(*src == null)
+                b = (*src++);
+                g = (*src++);
+                r = (*src++);
+
+                if (r == 0 && g == 0 && b == 0)
+                {
+                    Ponto newPoint = new Ponto(x, y);
+                    bool found = false;
+                    foreach (var ponto in segments[pos].segment)
+                    {
+                        if (ponto.x == x && ponto.y == y)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        segments[pos].segment.Add(newPoint);
+                        //dest = (byte*)coord;
+                        dest = (byte*)bitmapDataDest.Scan0 + y * stride + x * pixelSize;
+                        *dest++ = (byte)color.B;
+                        *dest++ = (byte)color.G;
+                        *dest++ = (byte)color.R;
+                    }
+
+                }
+
+            }
+
+        }
+
+        private static unsafe void checkTopRightPixelDMA(Byte* src, Byte* dest, BitmapData bitmapDataSrc, BitmapData bitmapDataDest, List<Segment> segments, int x, int y, int width, int height, int pos, int stride, int pixelSize, Color color)
+        {
+            if (x > 0 && y < height)
+            {
+
+                int r, g, b;
+                //int coord = (y * stride) + (x * pixelSize);
+                src = (byte*)bitmapDataSrc.Scan0 + y * stride + x * pixelSize;
+                //if(*src == null)
+                b = (*src++);
+                g = (*src++);
+                r = (*src++);
+
+                if (r == 0 && g == 0 && b == 0)
+                {
+                    Ponto newPoint = new Ponto(x, y);
+                    bool found = false;
+                    foreach (var ponto in segments[pos].segment)
+                    {
+                        if (ponto.x == x && ponto.y == y)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        segments[pos].segment.Add(newPoint);
+                        //dest = (byte*)coord;
+                        dest = (byte*)bitmapDataDest.Scan0 + y * stride + x * pixelSize;
+                        *dest++ = (byte)color.B;
+                        *dest++ = (byte)color.G;
+                        *dest++ = (byte)color.R;
+                    }
+
+                }
+
+            }
+
+        }
+
+        private static unsafe void checkBottomLeftPixelDMA(Byte* src, Byte* dest, BitmapData bitmapDataSrc, BitmapData bitmapDataDest, List<Segment> segments, int x, int y, int width, int height, int pos, int stride, int pixelSize, Color color)
+        {
+            if (x < width && y > 0)
+            {
+
+                int r, g, b;
+                //int coord = (y * stride) + (x * pixelSize);
+                src = (byte*)bitmapDataSrc.Scan0 + y * stride + x * pixelSize;
+                //if(*src == null)
+                b = (*src++);
+                g = (*src++);
+                r = (*src++);
+
+                if (r == 0 && g == 0 && b == 0)
+                {
+                    Ponto newPoint = new Ponto(x, y);
+                    bool found = false;
+                    foreach (var ponto in segments[pos].segment)
+                    {
+                        if (ponto.x == x && ponto.y == y)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        segments[pos].segment.Add(newPoint);
+                        //dest = (byte*)coord;
+                        dest = (byte*)bitmapDataDest.Scan0 + y * stride + x * pixelSize;
+                        *dest++ = (byte)color.B;
+                        *dest++ = (byte)color.G;
+                        *dest++ = (byte)color.R;
+                    }
+
+                }
+
+            }
+
+        }
+
+        private static unsafe void checkBottomRightPixelDMA(Byte* src, Byte* dest, BitmapData bitmapDataSrc, BitmapData bitmapDataDest, List<Segment> segments, int x, int y, int width, int height, int pos, int stride, int pixelSize, Color color)
+        {
+            if (x < width && y < height)
+            {
+
+                int r, g, b;
+                //int coord = (y * stride) + (x * pixelSize);
+                src = (byte*)bitmapDataSrc.Scan0 + y * stride + x * pixelSize;
+                //if(*src == null)
                 b = (*src++);
                 g = (*src++);
                 r = (*src++);

@@ -38,6 +38,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxImg1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictBoxImg2)).BeginInit();
             this.SuspendLayout();
@@ -45,29 +46,26 @@
             // pictBoxImg1
             // 
             this.pictBoxImg1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictBoxImg1.Location = new System.Drawing.Point(7, 7);
-            this.pictBoxImg1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictBoxImg1.Location = new System.Drawing.Point(5, 6);
             this.pictBoxImg1.Name = "pictBoxImg1";
-            this.pictBoxImg1.Size = new System.Drawing.Size(800, 615);
+            this.pictBoxImg1.Size = new System.Drawing.Size(600, 500);
             this.pictBoxImg1.TabIndex = 102;
             this.pictBoxImg1.TabStop = false;
             // 
             // pictBoxImg2
             // 
             this.pictBoxImg2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictBoxImg2.Location = new System.Drawing.Point(815, 7);
-            this.pictBoxImg2.Margin = new System.Windows.Forms.Padding(4);
+            this.pictBoxImg2.Location = new System.Drawing.Point(611, 6);
             this.pictBoxImg2.Name = "pictBoxImg2";
-            this.pictBoxImg2.Size = new System.Drawing.Size(800, 615);
+            this.pictBoxImg2.Size = new System.Drawing.Size(600, 500);
             this.pictBoxImg2.TabIndex = 105;
             this.pictBoxImg2.TabStop = false;
             // 
             // btnAbrirImagem
             // 
-            this.btnAbrirImagem.Location = new System.Drawing.Point(7, 630);
-            this.btnAbrirImagem.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAbrirImagem.Location = new System.Drawing.Point(5, 512);
             this.btnAbrirImagem.Name = "btnAbrirImagem";
-            this.btnAbrirImagem.Size = new System.Drawing.Size(135, 28);
+            this.btnAbrirImagem.Size = new System.Drawing.Size(101, 23);
             this.btnAbrirImagem.TabIndex = 106;
             this.btnAbrirImagem.Text = "Abrir Imagem";
             this.btnAbrirImagem.UseVisualStyleBackColor = true;
@@ -75,10 +73,9 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(7, 666);
-            this.btnLimpar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLimpar.Location = new System.Drawing.Point(5, 541);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(135, 28);
+            this.btnLimpar.Size = new System.Drawing.Size(101, 23);
             this.btnLimpar.TabIndex = 107;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
@@ -86,10 +83,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(149, 630);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(112, 512);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 28);
+            this.button1.Size = new System.Drawing.Size(101, 23);
             this.button1.TabIndex = 108;
             this.button1.Text = "Segmento 4";
             this.button1.UseVisualStyleBackColor = true;
@@ -97,10 +93,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(292, 630);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Location = new System.Drawing.Point(219, 512);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(135, 28);
+            this.button2.Size = new System.Drawing.Size(101, 23);
             this.button2.TabIndex = 109;
             this.button2.Text = "Segmento 8";
             this.button2.UseVisualStyleBackColor = true;
@@ -108,10 +103,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(149, 666);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Location = new System.Drawing.Point(112, 541);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(135, 28);
+            this.button3.Size = new System.Drawing.Size(101, 23);
             this.button3.TabIndex = 110;
             this.button3.Text = "Segmento 4 DMA";
             this.button3.UseVisualStyleBackColor = true;
@@ -119,10 +113,9 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(435, 630);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
+            this.button4.Location = new System.Drawing.Point(326, 512);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(222, 28);
+            this.button4.Size = new System.Drawing.Size(166, 23);
             this.button4.TabIndex = 111;
             this.button4.Text = "Reduzir Resolução espacial";
             this.button4.UseVisualStyleBackColor = true;
@@ -130,20 +123,30 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(435, 666);
-            this.button5.Margin = new System.Windows.Forms.Padding(4);
+            this.button5.Location = new System.Drawing.Point(326, 541);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(222, 28);
+            this.button5.Size = new System.Drawing.Size(166, 23);
             this.button5.TabIndex = 112;
             this.button5.Text = "Reduzir Resolução espacial DMA";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.btnSpacialResolutionDMA_Click);
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(219, 541);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(101, 23);
+            this.button6.TabIndex = 113;
+            this.button6.Text = "Segmento 8 DMA";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.btnSegmento8ComDMA_Click);
+            // 
             // frmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1627, 748);
+            this.ClientSize = new System.Drawing.Size(1220, 608);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -153,7 +156,6 @@
             this.Controls.Add(this.btnAbrirImagem);
             this.Controls.Add(this.pictBoxImg2);
             this.Controls.Add(this.pictBoxImg1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Formulário Principal";
@@ -175,6 +177,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }
 

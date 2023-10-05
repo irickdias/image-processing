@@ -93,6 +93,14 @@ namespace ProcessamentoImagens
             pictBoxImg2.Image = imgDest;
         }
 
+        private void btnSegmento8ComDMA_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.segmento8_dma(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
         private void btnSpacialResolution_Click(Object sender, EventArgs e)
         {
             Bitmap imgDest = new Bitmap(image.Width / 2, image.Height / 2);
