@@ -276,6 +276,17 @@ namespace ProcessamentoImagens
             pictBoxImg2.Image = imgDest;
         }
 
+        private void btnRotate90WithDMA_Click(Object sender, EventArgs e)
+        {
+            if (!pictBoxImg2.Visible)
+                changePictureBoxesVisibility();
+
+            Bitmap imgDest = new Bitmap(image.Height, image.Width);
+            imageBitmap = (Bitmap)image;
+            Filtros.rotate_90_dma(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
         private void btnSegment4_Click(Object sender, EventArgs e)
         {
             if (!pictBoxImg2.Visible)
@@ -305,7 +316,7 @@ namespace ProcessamentoImagens
 
             Bitmap imgDest = new Bitmap(image.Width / 2, image.Height / 2);
             imageBitmap = (Bitmap)image;
-            Filtros.spacial_resolution_dma(imageBitmap, imgDest);
+           // Filtros.spacial_resolution_dma(imageBitmap, imgDest);
             pictBoxImg2.Image = imgDest;
         }
 

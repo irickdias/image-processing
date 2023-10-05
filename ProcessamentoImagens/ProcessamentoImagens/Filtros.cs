@@ -784,7 +784,8 @@ namespace ProcessamentoImagens
             int height = imgSrc.Height;
             int pixelSize = 3;
 
-            int half = width / 2;
+            int half_width = width / 2;
+            int half_height = height / 2;
 
             //lock dados bitmap origem
             BitmapData bitmapDataSrc = imgSrc.LockBits(new Rectangle(0, 0, width, height),
@@ -799,117 +800,140 @@ namespace ProcessamentoImagens
             {
                 byte* src = (byte*)bitmapDataSrc.Scan0.ToPointer();
                 byte* dest = (byte*)bitmapDataDest.Scan0.ToPointer();
-                byte* halfPointerSrc = src + (half * bitmapDataSrc.Stride);
+                //byte* halfPointerSrc = src + (half * bitmapDataSrc.Stride);
                 //byte* halfPointerSrc = src + bitmapDataSrc.Height;
-                byte* halfPointerDest = dest + (half * bitmapDataDest.Stride);
+                //byte* halfPointerDest = dest + (half * bitmapDataDest.Stride);
                 //byte* halfPointerDest = dest + bitmapDataDest.Height;
                 byte* destSupHalf, destInfHalf, srcSupHalf, srcInfHalf;
                 int r, g, b, r2, g2, b2, r3, g3, b3, r4, g4, b4;
 
                 //int halfLine = (bitmapDataSrc.Stride - padding) / 2;
-                int halfLine = half * pixelSize;
-                int ctr;
+                //int halfLine = half * pixelSize;
+                //int ctr;
                 //srcSupHalf = (byte*)0;
-                for (int y = 0; y < height; y++)
+                for (int y = 0; y < half_height; y++)
                 {
                     //int halfLine = (int)src + (bitmapDataSrc.Stride - padding) / 2;
-                    srcSupHalf = src + halfLine;
-                    srcInfHalf = halfPointerSrc + halfLine;
-
-                    destSupHalf = dest + halfLine;
-                    destInfHalf = halfPointerDest + halfLine;
-
-                    ctr = 0;
-                    for (int x = 0; x < half; x++)
+                    
+                    for (int x = 0; x < half_width; x++)
                     {
                         
-                        //for (int k=0; k < halfLine; k+=3)
-                        if( ctr < halfLine)
-                        {
-                            //obtendo a cor do pixel
-                            //Color cor = imageBitmapSrc.GetPixel(x, y);
-
-                            // ORIGEM
-
-                            // canto superior esquerdo de src
-                            b = *(src++);
-                            g = *(src++);
-                            r = *(src++);
+                        src = (byte*)bitmapDataSrc.Scan0 + y * bitmapDataSrc.Stride + x * pixelSize;
+                        b = (*src++);
+                        g = (*src++);
+                        r = (*src++);
 
 
-                            // canto superior direito de src
-                            b2 = *(srcSupHalf++);
-                            g2 = *(srcSupHalf++);
-                            r2 = *(srcSupHalf++);
-
-                            // canto inferior esquerdo de src
-                            b3 = *(halfPointerSrc++);
-                            g3 = *(halfPointerSrc++);
-                            r3 = *(halfPointerSrc++);
+                        dest = (byte*)bitmapDataDest.Scan0 + (half_height + y) * bitmapDataDest.Stride + (half_width + x) * pixelSize;
+                        (*dest++) = (byte)b;
+                        (*dest++) = (byte)g;
+                        (*dest++) = (byte)r;
 
 
-                            // canto inferior direito de src
-                            b4 = *(srcInfHalf++);
-                            g4 = *(srcInfHalf++);
-                            r4 = *(srcInfHalf++);
-
-                            // DESTINO
-
-                            // canto superior esquerdo de dest
-                            *(dest++) = (byte)b4;
-                            *(dest++) = (byte)g4;
-                            *(dest++) = (byte)r4;
-
-                            // canto superior direito de dest
-                            *(destSupHalf++) = (byte)b3;
-                            *(destSupHalf++) = (byte)g3;
-                            *(destSupHalf++) = (byte)r3;
-
-                            // canto inferior esquerdo de dest
-                            *(halfPointerDest++) = (byte)b2;
-                            *(halfPointerDest++) = (byte)g2;
-                            *(halfPointerDest++) = (byte)r2;
-
-                            // canto inferior direito de dest
-                            *(destInfHalf++) = (byte)b;
-                            *(destInfHalf++) = (byte)g;
-                            *(destInfHalf++) = (byte)r;
+                        src = (byte*)bitmapDataSrc.Scan0 + y * bitmapDataSrc.Stride + (half_width + x) * pixelSize;
+                        b = (*src++);
+                        g = (*src++);
+                        r = (*src++);
 
 
-                        }
-                        else
-                        {
-                            src++;
-                            halfPointerSrc++;
+                        dest = (byte*)bitmapDataDest.Scan0 + (half_height + y) * bitmapDataDest.Stride + x * pixelSize;
+                        (*dest++) = (byte)b;
+                        (*dest++) = (byte)g;
+                        (*dest++) = (byte)r;
 
-                            dest++;
-                            halfPointerDest++;
-                        }
-                        
+                        // bottom left
+                        src = (byte*)bitmapDataSrc.Scan0 + (half_height + y) * bitmapDataDest.Stride + x * pixelSize;
+                        b = (*src++);
+                        g = (*src++);
+                        r = (*src++);
 
-                    }
-                    //src += halfLine + padding;
-                    //halfPointerSrc += halfLine + padding;
-                    //srcHalf += padding;
-                    //dest += halfLine + padding;
-                    //halfPointerDest += halfLine + padding;
 
-                    src += padding;
-                    halfPointerSrc += padding;
+                        dest = (byte*)bitmapDataDest.Scan0 + y * bitmapDataDest.Stride + (half_width + x) * pixelSize;
+                        (*dest++) = (byte)b;
+                        (*dest++) = (byte)g;
+                        (*dest++) = (byte)r;
 
-                    dest += padding;
-                    halfPointerDest += padding;
+                        // bottom right
+                        src = (byte*)bitmapDataSrc.Scan0 + (half_height + y) * bitmapDataSrc.Stride + (half_width + x) * pixelSize;
+                        b = (*src++);
+                        g = (*src++);
+                        r = (*src++);
+
+
+                        dest = (byte*)bitmapDataDest.Scan0 + y * bitmapDataDest.Stride + x * pixelSize;
+                        (*dest++) = (byte)b;
+                        (*dest++) = (byte)g;
+                        (*dest++) = (byte)r;
+
 
 
 
+                    }
+                    //src += padding;
+                    //dest += padding;
                 }
 
             }
+            //unlock imagem origem 
+            imgSrc.UnlockBits(bitmapDataSrc);
+            //unlock imagem destino
+            imgDest.UnlockBits(bitmapDataDest);
         }
 
         public static void rotate_90_dma(Bitmap imgSrc, Bitmap imgDest)
         {
+            int width = imgSrc.Width;
+            int height = imgSrc.Height;
+            int pixelSize = 3;
+            int inverse_width = height;
+            Int32 gs;
 
+            //lock dados bitmap origem
+            BitmapData bitmapDataSrc = imgSrc.LockBits(new Rectangle(0, 0, width, height),
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+            //lock dados bitmap destino
+            BitmapData bitmapDataDest = imgDest.LockBits(new Rectangle(0, 0, height, width),
+                ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+
+            int padding = bitmapDataSrc.Stride - (width * pixelSize);
+
+            unsafe
+            {
+                byte* src = (byte*)bitmapDataSrc.Scan0.ToPointer();
+                byte* dest = (byte*)bitmapDataDest.Scan0.ToPointer();
+                byte* aux;
+                int r, g, b;
+
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        //obtendo a cor do pixel
+                        //Color cor = imageBitmapSrc.GetPixel(x, y);
+
+                        b = *(src++);
+                        g = *(src++);
+                        r = *(src++);
+
+                        //aux = src;
+                        //dest = (byte*)bitmapDataSrc.Scan0 + (inverse_width - 1 -y) * bitmapDataSrc.Stride + (x) * pixelSize;
+                        dest = (byte*)bitmapDataDest.Scan0 + (x) * bitmapDataSrc.Stride + (width - 1 - y) * pixelSize;
+                        (*dest++) = (byte)b;
+                        (*dest++) = (byte)g;
+                        (*dest++) = (byte)r;
+                        //dest.SetPixel(inverse_width - 1 - y, x, cor);
+
+                    }
+
+                    src += padding;
+                    //dest += padding;
+                }
+            }
+
+            //unlock imagem origem 
+            imgSrc.UnlockBits(bitmapDataSrc);
+            //unlock imagem destino
+            imgDest.UnlockBits(bitmapDataDest);
         }
     }
 }
