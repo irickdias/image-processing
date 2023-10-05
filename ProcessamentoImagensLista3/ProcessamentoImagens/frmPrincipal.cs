@@ -84,15 +84,88 @@ namespace ProcessamentoImagens
             imageBitmap = (Bitmap)image;
             Filtros.bitplane_slicing(imageBitmap, fileName);
             //pictBoxImg2.Image = imgDest;
-            label1.Text = "Fatiamento do plano de bits realizados com sucesso";
+            //label1.Text = "Fatiamento do plano de bits realizados com sucesso";
+        }
+
+        private void btnFatiarBitsDMA_Click(object sender, EventArgs e)
+        {
+            DirectoryInfo di = new DirectoryInfo("../../../Images/Slicing");
+            FileInfo[] files = di.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                file.Delete();
+            }
+
+            //Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.bitplane_slicing_dma(imageBitmap, fileName);
+            //pictBoxImg2.Image = imgDest;
+            //label1.Text = "Fatiamento do plano de bits realizados com sucesso";
         }
 
         private void btnEqualizar_Click(object sender, EventArgs e)
         {
             Bitmap imgDest = new Bitmap(image);
             imageBitmap = (Bitmap)image;
-            int[] f = Filtros.histogram(imageBitmap);
-            Filtros.equalization(imageBitmap, imgDest, f);
+            int[] h = Filtros.histogram(imageBitmap);
+            Filtros.equalization(imageBitmap, imgDest, h);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnEqualizarDMA_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            int[] h = Filtros.histogram_dma(imageBitmap);
+            Filtros.equalization_dma(imageBitmap, imgDest, h);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnSuavizar5x5_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.smoothing5x5(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnSuavizar5x5DMA_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.smoothing5x5_dma(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnSuavizar5x5Mediana_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.smoothingMean5x5(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnSuavizar5x5MedianaDMA_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.smoothingMean5x5_dma(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnSuavizar5x5KMedia_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.smoothing5x5KMean(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnSuavizar5x5KMediaDMA_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.smoothing5x5KMean_dma(imageBitmap, imgDest);
             pictBoxImg2.Image = imgDest;
         }
     }
