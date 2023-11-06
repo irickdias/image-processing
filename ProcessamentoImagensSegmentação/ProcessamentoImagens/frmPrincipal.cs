@@ -68,5 +68,29 @@ namespace ProcessamentoImagens
             Filtros.negativoDMA(imageBitmap, imgDest);
             pictBoxImg2.Image = imgDest;
         }
+
+        private void btnDetecaoBordaRobertsSemDMA_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.roberts_cross_edge_detection(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnDetecaoBordaPrewittSemDMA_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.prewitt_edge_detection(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnDetecaoBordaSobelSemDMA_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.sobel_edge_detection(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
     }
 }
