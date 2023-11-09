@@ -77,11 +77,27 @@ namespace ProcessamentoImagens
             pictBoxImg2.Image = imgDest;
         }
 
+        private void btnDetecaoBordaRobertsComDMA_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.roberts_cross_edge_detection_dma(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
         private void btnDetecaoBordaPrewittSemDMA_Click(object sender, EventArgs e)
         {
             Bitmap imgDest = new Bitmap(image);
             imageBitmap = (Bitmap)image;
             Filtros.prewitt_edge_detection(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnDetecaoBordaPrewittComDMA_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.prewitt_edge_detection_dma(imageBitmap, imgDest);
             pictBoxImg2.Image = imgDest;
         }
 
@@ -92,5 +108,26 @@ namespace ProcessamentoImagens
             Filtros.sobel_edge_detection(imageBitmap, imgDest);
             pictBoxImg2.Image = imgDest;
         }
+
+        private void btnDetecaoBordaSobelComDMA_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            Filtros.sobel_edge_detection_dma(imageBitmap, imgDest);
+            pictBoxImg2.Image = imgDest;
+        }
+
+        private void btnAfinamentoZhangSuenSemDMA_Click(object sender, EventArgs e)
+        {
+            Bitmap imgDest = new Bitmap(image);
+            Bitmap imgDest2 = new Bitmap(image);
+            Bitmap imgDest3 = new Bitmap(image);
+            imageBitmap = (Bitmap)image;
+            //Filtros.convert_to_grayDMA(imageBitmap, imgDest);
+            //Filtros.black_white_dma(imgDest, imgDest2);
+            //Filtros.zhangsuen(imageBitmap, imgDest);
+            pictBoxImg2.Image = Filtros.ApplyZhangSuenThinning(imageBitmap);
+        }
+
     }
 }
